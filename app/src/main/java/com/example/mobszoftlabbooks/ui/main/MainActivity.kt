@@ -6,16 +6,6 @@ import com.example.mobszoftlabbooks.R
 
 class MainActivity : AppCompatActivity(), MainScreen {
 
-    override fun onStart() {
-        super.onStart()
-        MainPresenter.attachScreen(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        MainPresenter.detachScreen()
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -42,4 +43,16 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation daggerDependencies.dagger
+    kapt daggerDependencies.compiler
+    api daggerDependencies.annotation
+
+    testImplementation unitTestDependencies.junit
+    testImplementation unitTestDependencies.robolectric
+    testImplementation unitTestDependencies.mockito
+
+    testImplementation daggerDependencies.dagger
+    testImplementation daggerDependencies.annotation
+    kaptTest daggerDependencies.compiler
 }

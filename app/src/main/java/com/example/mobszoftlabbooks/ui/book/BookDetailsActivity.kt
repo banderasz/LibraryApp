@@ -11,14 +11,4 @@ class BookDetailsActivity : AppCompatActivity(), BookScreen {
     override fun showError(errorMsg: String) {
         TODO("Not yet implemented")
     }
-
-    override fun onStart() {
-        super.onStart()
-        BookPresenter.attachScreen(this)
-    }
-
-    override fun onStop() {
-        BookPresenter.detachScreen()
-        super.onStop()
-    }
 }
