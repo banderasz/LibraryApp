@@ -6,16 +6,14 @@ import com.example.mobszoftlabbooks.R
 
 class MainActivity : AppCompatActivity(), MainScreen {
 
-    private val mainPresenter = MainPresenter()
-
     override fun onStart() {
         super.onStart()
-        mainPresenter.attachScreen(this)
+        MainPresenter.attachScreen(this)
     }
 
     override fun onStop() {
         super.onStop()
-        mainPresenter.detachScreen()
+        MainPresenter.detachScreen()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
