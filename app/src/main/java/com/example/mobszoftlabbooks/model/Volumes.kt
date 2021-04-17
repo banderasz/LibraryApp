@@ -1,4 +1,4 @@
-package io.swagger.client.model
+package com.example.mobszoftlabbooks.model
 
 import android.os.Build
 import androidx.annotation.RequiresApi

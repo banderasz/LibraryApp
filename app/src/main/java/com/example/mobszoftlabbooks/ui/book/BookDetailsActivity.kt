@@ -3,7 +3,7 @@ package com.example.mobszoftlabbooks.ui.book
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobszoftlabbooks.injector
-import io.swagger.client.model.Volume
+import com.example.mobszoftlabbooks.model.Volume
 import javax.inject.Inject
 
 class BookDetailsActivity : AppCompatActivity(), BookScreen {
