@@ -1,8 +1,8 @@
 package com.example.mobszoftlabbooks.ui.book
 
-import com.example.mobszoftlabbooks.model.BookResult
+import io.swagger.client.model.Volumes
 
 interface BookScreen {
-    fun showBookDetails(bookData: BookResult)
+    fun showBookDetails(bookData: Volumes)
     fun showError(errorMsg: String)
 }

@@ -1,10 +1,9 @@
 package com.example.mobszoftlabbooks.ui.book
 
-import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobszoftlabbooks.injector
-import com.example.mobszoftlabbooks.model.BookResult
+import io.swagger.client.model.Volume
 import javax.inject.Inject
 
 class BookDetailsActivity : AppCompatActivity(), BookScreen {
@@ -29,7 +28,7 @@ class BookDetailsActivity : AppCompatActivity(), BookScreen {
     }
 
 
-    override fun showBookDetails(bookData: BookResult) {
+    override fun showBookDetails(bookData: Volume) {
         TODO("Not yet implemented")
     }
 
