@@ -2,7 +2,6 @@ package com.example.mobszoftlabbooks.ui
 
 import android.content.Context
 import com.example.mobszoftlabbooks.interactor.book.BookInteractor
-import com.example.mobszoftlabbooks.interactor.main.MainInteractor
 import com.example.mobszoftlabbooks.ui.main.MainPresenter
 import com.example.mobszoftlabbooks.ui.book.BookPresenter
 import dagger.Module
@@ -17,7 +16,7 @@ class UIModule(private val context: Context) {
 
     @Provides
     @Singleton
-    fun mainPresenter(mainInteractor: MainInteractor) = MainPresenter(mainInteractor)
+    fun mainPresenter(bookInteractor: BookInteractor) = MainPresenter(bookInteractor)
 
     @Provides
     @Singleton
