@@ -1,12 +1,28 @@
 package com.example.mobszoftlabbooks.ui.main
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mobszoftlabbooks.R
 import com.example.mobszoftlabbooks.injector
+import com.example.mobszoftlabbooks.model.Volume
+import com.example.mobszoftlabbooks.ui.book.BookDetailsActivity
 import javax.inject.Inject
 
+
 class MainActivity : AppCompatActivity(), MainScreen {
+
+    private var displayedBooks: MutableList<Volume> = mutableListOf()
+    private var booksAdapter: BooksAdapter? = null
+//    private val book by lazy { arguments!!.getString(KEY_BOOK)!! }
+    private var selectedBook: String? = null
+    var recyclerViewBooks : RecyclerView? = null
+
 
     @Inject
     lateinit var mainPresenter: MainPresenter
@@ -14,7 +30,16 @@ class MainActivity : AppCompatActivity(), MainScreen {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val searchEdt: EditText = findViewById(R.id.idEdtSearchBooks);
+        val searchBtn: ImageButton = findViewById(R.id.idBtnSearch);
+        recyclerViewBooks = findViewById<RecyclerView>(R.id.idRVBooks)
+        booksAdapter = BooksAdapter(this, displayedBooks)
+
+
         injector.inject(this)
+        searchBtn.setOnClickListener {
+            mainPresenter.showBooksSearchList(searchEdt.text.toString())
+        }
     }
 
     override fun onStart() {
@@ -27,7 +52,25 @@ class MainActivity : AppCompatActivity(), MainScreen {
         mainPresenter.detachScreen()
     }
 
-    override fun showBooks(bookSearchTerm: String) {
-        TODO("Not yet implemented")
+    override fun showBooks(books:  List<Volume>?) {
+        displayedBooks.clear()
+        if(books != null){
+            displayedBooks.addAll(books)
+        }
+        booksAdapter?.notifyDataSetChanged()
+        if (displayedBooks.isEmpty()) {
+            recyclerViewBooks?.visibility = View.GONE
+        } else {
+            recyclerViewBooks?.visibility = View.VISIBLE
+        }
+
+    }
+
+    override fun showNetworkError(errorMsg: String) {
+        Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show()
+    }
+
+    companion object {
+        const val KEY_BOOK = "KEY_BOOK"
     }
 }

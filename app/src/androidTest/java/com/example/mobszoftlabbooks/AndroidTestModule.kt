@@ -21,14 +21,14 @@ class AndroidTestModule(context: Context) {
 
     @Provides
     @Singleton
-    fun provideMainPresenter(bookInteractor: BookInteractor): MainPresenter {
-        return uiModule.mainPresenter(bookInteractor)
+    fun provideMainPresenter(executor: Executor, bookInteractor: BookInteractor): MainPresenter {
+        return uiModule.mainPresenter(executor, bookInteractor)
     }
 
     @Provides
     @Singleton
-    fun provideArtistsPresenter(bookInteractor: BookInteractor): BookPresenter {
-        return uiModule.booksPresenter(bookInteractor)
+    fun provideArtistsPresenter(executor: Executor, bookInteractor: BookInteractor): BookPresenter {
+        return uiModule.booksPresenter(executor, bookInteractor)
     }
 
 
