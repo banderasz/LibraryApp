@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobszoftlabbooks.R
 import com.example.mobszoftlabbooks.injector
 import com.example.mobszoftlabbooks.model.Volume
+import com.example.mobszoftlabbooks.ui.about.AboutActivity
 import com.example.mobszoftlabbooks.ui.book.BookDetailsActivity
 import javax.inject.Inject
 
@@ -20,7 +21,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity(), MainScreen {
 
     private var displayedBooks: MutableList<Volume> = mutableListOf()
-    private var booksAdapter: BooksAdapter? = null
+    lateinit var booksAdapter: BooksAdapter
 //    private val book by lazy { arguments!!.getString(KEY_BOOK)!! }
     private var selectedBook: String? = null
     lateinit var recyclerViewBooks : RecyclerView
@@ -34,6 +35,8 @@ class MainActivity : AppCompatActivity(), MainScreen {
         setContentView(R.layout.activity_main)
         val searchEdt: EditText = findViewById(R.id.idEdtSearchBooks);
         val searchBtn: ImageButton = findViewById(R.id.idBtnSearch);
+        val infoBtn: ImageButton = findViewById(R.id.idBtnInfo);
+        val favoriteBtn: ImageButton = findViewById(R.id.idBtnFavorite);
         recyclerViewBooks = findViewById<RecyclerView>(R.id.idRVBooks)
         booksAdapter = BooksAdapter(this, displayedBooks)
         recyclerViewBooks.adapter = booksAdapter
@@ -42,6 +45,13 @@ class MainActivity : AppCompatActivity(), MainScreen {
         injector.inject(this)
         searchBtn.setOnClickListener {
             mainPresenter.showBooksSearchList(searchEdt.text.toString())
+        }
+
+        infoBtn.setOnClickListener() {
+            val i = Intent(this, AboutActivity::class.java)
+            // after passing that data we are
+            // starting our new  intent.
+            this.startActivity(i)
         }
     }
 

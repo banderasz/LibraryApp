@@ -41,7 +41,7 @@ class BooksAdapter constructor(
         holder.itemView.setOnClickListener { // inside on click listener method we are calling a new activity
             // and passing all the data of that item in next intent.
             val i = Intent(context, BookDetailsActivity::class.java)
-            i.putExtra(KEY_BOOK, bookinfo)
+            i.putExtra(KEY_BOOK, book)
             // after passing that data we are
             // starting our new  intent.
             context.startActivity(i)
@@ -57,7 +57,6 @@ class BooksAdapter constructor(
         var publisherTV: TextView = itemView.findViewById(R.id.idTVpublisher)
         var pageCountTV: TextView = itemView.findViewById(R.id.idTVPageCount)
         var dateTV: TextView = itemView.findViewById(R.id.idTVDate)
-        var bookIV: ImageView = itemView.findViewById(R.id.idIVbook)
     }
 
     companion object {

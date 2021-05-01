@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="5">
+        android:weightSum="6">
 
         <!--edit text for getting the search
             query for book from user-->
@@ -19,15 +19,29 @@
             android:id="@+id/idEdtSearchBooks"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4" />
+            android:layout_weight="3" />
 
         <!--image button for our search button -->
         <ImageButton
             android:id="@+id/idBtnSearch"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@android:drawable/ic_search_category_default" />
+
+        <ImageButton
+            android:id="@+id/idBtnFavorite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@android:drawable/btn_star" />
+
+        <ImageButton
+            android:id="@+id/idBtnInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@android:drawable/ic_dialog_info" />
 
     </LinearLayout>
 

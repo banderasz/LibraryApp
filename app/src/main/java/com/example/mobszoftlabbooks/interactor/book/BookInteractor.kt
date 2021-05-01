@@ -3,20 +3,24 @@ package com.example.mobszoftlabbooks.interactor.book
 import android.util.Log
 import com.example.mobszoftlabbooks.interactor.book.event.DeleteBookEvent
 import com.example.mobszoftlabbooks.interactor.book.event.GetBookEvent
+import com.example.mobszoftlabbooks.interactor.book.event.UpdateFavoriteEvent
 import com.example.mobszoftlabbooks.interactor.book.event.GetBooksEvent
 import com.example.mobszoftlabbooks.interactor.book.event.UpdateBookEvent
+import com.example.mobszoftlabbooks.model.DataBaseModule
 import com.example.mobszoftlabbooks.model.Volume
+import com.example.mobszoftlabbooks.model.database.AppDatabase
 import com.example.mobszoftlabbooks.network.BooksApi
 import com.example.mobszoftlabbooks.network.NetworkConfig.API_KEY
 import org.greenrobot.eventbus.EventBus
 import javax.inject.Inject
 
 class BookInteractor @Inject constructor(private var booksApi: BooksApi){
+
+
     fun getBooks(bookQuery: String){
         val event = GetBooksEvent()
         try {
             val booksQueryCall = booksApi.searchBooks(bookQuery, API_KEY)
-
             val response = booksQueryCall.execute()
             Log.d("Reponse", response.body().toString())
             if (response.code() != 200) {
@@ -30,6 +34,26 @@ class BookInteractor @Inject constructor(private var booksApi: BooksApi){
             EventBus.getDefault().post(event)
         }
     }
+
+//    fun favoriteBook(book: Volume) {
+//        val event = UpdateFavoriteEvent()
+//        db.bookDao().favourite(book)
+//        event.isFavorite = true
+//        EventBus.getDefault().post(event)
+//    }
+//
+//    fun unfavoriteBook(book: Volume) {
+//        val event = UpdateFavoriteEvent()
+//        db.bookDao().unfavourite(book)
+//        event.isFavorite = false
+//        EventBus.getDefault().post(event)
+//    }
+//
+//    fun checkIfFavourite(book: Volume) {
+//        val event = UpdateFavoriteEvent()
+//        event.isFavorite = db.bookDao().isFavourite(book.id!!)
+//        EventBus.getDefault().post(event)
+//    }
 
     fun getBook(bookId: String){
         val event = GetBookEvent()

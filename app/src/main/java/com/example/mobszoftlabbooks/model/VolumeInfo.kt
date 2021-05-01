@@ -2,17 +2,18 @@ package com.example.mobszoftlabbooks.model
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import java.math.BigDecimal
 import java.util.*
-
+@Entity
 data class VolumeInfo(
     /**
      */
 
     @SerializedName("title")
-    var title: String? = null,
+    var title:  String = "",
 
     /**
      */
@@ -22,22 +23,22 @@ data class VolumeInfo(
     /**
      */
     @SerializedName("publisher")
-    var publisher: String? = null,
+    var publisher:  String = "",
 
     /**
      */
     @SerializedName("publishedDate")
-    var publishedDate: String? = null,
+    var publishedDate: String = "",
 
     /**
      */
     @SerializedName("description")
-    var description: String? = null,
+    var description:  String = "",
 
     /**
      */
     @SerializedName("pageCount")
-    var pageCount: Int? = null,
+    var pageCount: Int = 0,
 
     /**
      */
