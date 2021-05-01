@@ -27,8 +27,14 @@ class AndroidTestModule(context: Context) {
 
     @Provides
     @Singleton
-    fun provideArtistsPresenter(executor: Executor, bookInteractor: BookInteractor): BookPresenter {
+    fun provideBooksPresenter(executor: Executor, bookInteractor: BookInteractor): BookPresenter {
         return uiModule.booksPresenter(executor, bookInteractor)
+    }
+
+    @Provides
+    @Singleton
+    fun provideNetworkExecutor(): Executor {
+        return uiModule.networkExecutor()
     }
 
 
