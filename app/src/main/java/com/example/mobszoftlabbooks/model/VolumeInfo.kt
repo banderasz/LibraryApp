@@ -3,12 +3,14 @@ package com.example.mobszoftlabbooks.model
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.math.BigDecimal
 import java.util.*
 
 data class VolumeInfo(
     /**
      */
+
     @SerializedName("title")
     var title: String? = null,
 
@@ -25,12 +27,12 @@ data class VolumeInfo(
     /**
      */
     @SerializedName("publishedDate")
-    var publishedDate: Date? = null,
+    var publishedDate: String? = null,
 
     /**
      */
     @SerializedName("description")
-    var description: Date? = null,
+    var description: String? = null,
 
     /**
      */
@@ -46,4 +48,6 @@ data class VolumeInfo(
      */
     @SerializedName("averageRating")
     var averageRating: BigDecimal? = null
-)
+
+
+) : Serializable

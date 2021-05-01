@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobszoftlabbooks.R
 import com.example.mobszoftlabbooks.injector
@@ -21,7 +23,7 @@ class MainActivity : AppCompatActivity(), MainScreen {
     private var booksAdapter: BooksAdapter? = null
 //    private val book by lazy { arguments!!.getString(KEY_BOOK)!! }
     private var selectedBook: String? = null
-    var recyclerViewBooks : RecyclerView? = null
+    lateinit var recyclerViewBooks : RecyclerView
 
 
     @Inject
@@ -34,7 +36,8 @@ class MainActivity : AppCompatActivity(), MainScreen {
         val searchBtn: ImageButton = findViewById(R.id.idBtnSearch);
         recyclerViewBooks = findViewById<RecyclerView>(R.id.idRVBooks)
         booksAdapter = BooksAdapter(this, displayedBooks)
-
+        recyclerViewBooks.adapter = booksAdapter
+        recyclerViewBooks.layoutManager = LinearLayoutManager(this)
 
         injector.inject(this)
         searchBtn.setOnClickListener {
@@ -52,8 +55,8 @@ class MainActivity : AppCompatActivity(), MainScreen {
         mainPresenter.detachScreen()
     }
 
-    override fun showBooks(books:  List<Volume>?) {
-        displayedBooks.clear()
+    override fun showBooks(books:  List<Volume>) {
+        /*displayedBooks.clear()
         if(books != null){
             displayedBooks.addAll(books)
         }
@@ -62,8 +65,8 @@ class MainActivity : AppCompatActivity(), MainScreen {
             recyclerViewBooks?.visibility = View.GONE
         } else {
             recyclerViewBooks?.visibility = View.VISIBLE
-        }
-
+        }*/
+        booksAdapter?.setBooks(books);
     }
 
     override fun showNetworkError(errorMsg: String) {

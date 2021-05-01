@@ -25,6 +25,11 @@ class BooksAdapter constructor(
         return BookViewHolder(itemView)
     }
 
+    fun setBooks(books: List<Volume>) {
+        this.books = books
+        this.notifyDataSetChanged()
+    }
+
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         val book: Volume = books[position]
         val bookinfo: VolumeInfo = book.volumeInfo!!
@@ -36,13 +41,7 @@ class BooksAdapter constructor(
         holder.itemView.setOnClickListener { // inside on click listener method we are calling a new activity
             // and passing all the data of that item in next intent.
             val i = Intent(context, BookDetailsActivity::class.java)
-            i.putExtra("title", bookinfo.title)
-            i.putExtra("authors", bookinfo.authors.toString())
-            i.putExtra("publisher", bookinfo.publisher)
-            i.putExtra("publishedDate", bookinfo.publishedDate)
-            i.putExtra("description", bookinfo.description)
-            i.putExtra("pageCount", bookinfo.pageCount)
-
+            i.putExtra(KEY_BOOK, bookinfo)
             // after passing that data we are
             // starting our new  intent.
             context.startActivity(i)
@@ -54,18 +53,14 @@ class BooksAdapter constructor(
     class BookViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // below line is use to initialize
         // our text view and image views.
-        var nameTV: TextView
-        var publisherTV: TextView
-        var pageCountTV: TextView
-        var dateTV: TextView
-        var bookIV: ImageView
+        var nameTV: TextView = itemView.findViewById(R.id.idTVBookTitle)
+        var publisherTV: TextView = itemView.findViewById(R.id.idTVpublisher)
+        var pageCountTV: TextView = itemView.findViewById(R.id.idTVPageCount)
+        var dateTV: TextView = itemView.findViewById(R.id.idTVDate)
+        var bookIV: ImageView = itemView.findViewById(R.id.idIVbook)
+    }
 
-        init {
-            nameTV = itemView.findViewById(R.id.idTVBookTitle)
-            publisherTV = itemView.findViewById(R.id.idTVpublisher)
-            pageCountTV = itemView.findViewById(R.id.idTVPageCount)
-            dateTV = itemView.findViewById(R.id.idTVDate)
-            bookIV = itemView.findViewById(R.id.idIVbook)
-        }
+    companion object {
+        const val KEY_BOOK = "KEY_BOOK"
     }
 }

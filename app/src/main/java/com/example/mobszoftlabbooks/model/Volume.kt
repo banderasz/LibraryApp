@@ -14,7 +14,7 @@ data class Volume (
     /**
      */
     @SerializedName("id")
-    var id: UUID? = null,
+    var id: String? = null,
 
     /**
      */

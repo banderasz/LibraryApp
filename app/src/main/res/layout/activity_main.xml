@@ -36,6 +36,7 @@
         android:id="@+id/idRVBooks"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/idLLsearch" />
+        android:layout_below="@id/idLLsearch"
+        tools:listitem="@layout/book_rv_item"/>
 
 </RelativeLayout>
